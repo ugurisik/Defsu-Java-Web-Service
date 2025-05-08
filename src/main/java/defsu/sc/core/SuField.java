@@ -1,5 +1,6 @@
 package defsu.sc.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import defsu.sc.utils.ComboAdapter;
 import lombok.Getter;
@@ -20,10 +21,16 @@ public class SuField implements Serializable {
     public String title;
 
     @JsonProperty("maskRegex")
-    public MaskRegex maskRegex;
+    public String maskRegex;
 
     @JsonProperty("defaultValue")
     public Object defaultValue;
+
+    @JsonProperty("actualValue")
+    public Object actualValue;
+
+    @JsonProperty("displayValue")
+    public Object displayValue;
 
     @JsonProperty("required")
     public boolean required;
@@ -88,15 +95,17 @@ public class SuField implements Serializable {
         setRequired(false);
         setWidth(0);
         setHeight(0);
-        setMaskRegex(MaskRegex.NONE);
+        setMaskRegex(MaskRegex.NONE.value);
         setDatabaseRecord("");
         setService("");
         setSearchParams("");
         setOrderParams("");
-        setSearchField(null);
+        setSearchField("");
         setDisplayField("");
         setComboAdapter(null);
         setMaxLength(255);
+        setDefaultValue(null);
+        setActualValue(null);
     }
 
     public enum DisplayType{
@@ -180,7 +189,10 @@ public class SuField implements Serializable {
     }
 
     public static class FieldList implements Serializable{
+        @JsonProperty("fields")
         private final List<SuField> fields;
+
+        @JsonIgnore
         private final List<String> fieldNames;
 
         public FieldList() {
@@ -236,7 +248,7 @@ public class SuField implements Serializable {
         return title;
     }
 
-    public MaskRegex getMaskRegex() {
+    public String getMaskRegex() {
         return maskRegex;
     }
 
@@ -312,7 +324,7 @@ public class SuField implements Serializable {
         this.title = title;
     }
 
-    public void setMaskRegex(MaskRegex maskRegex) {
+    public void setMaskRegex(String maskRegex) {
         this.maskRegex = maskRegex;
     }
 
@@ -387,5 +399,21 @@ public class SuField implements Serializable {
 
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
+    }
+
+    public Object getActualValue() {
+        return actualValue;
+    }
+
+    public void setActualValue(Object actualValue) {
+        this.actualValue = actualValue;
+    }
+
+    public Object getDisplayValue() {
+        return displayValue;
+    }
+
+    public void setDisplayValue(Object displayValue) {
+        this.displayValue = displayValue;
     }
 }

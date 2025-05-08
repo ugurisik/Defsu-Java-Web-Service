@@ -1,5 +1,7 @@
 package defsu.sc.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 
@@ -15,9 +17,11 @@ public interface SuRecord extends Serializable {
     boolean hasDuplicate();
     RecordProps getField();
 
+
     public static class RecordProps implements Serializable{
         public String title;
         public String idField;
+        @JsonIgnore
         public SuField.FieldList fields;
     }
 }

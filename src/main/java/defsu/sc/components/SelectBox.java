@@ -1,10 +1,9 @@
 package defsu.sc.components;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import defsu.sc.utils.ComboAdapter;
 import defsu.sc.utils.FKPair;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class SelectBox extends ComboAdapter {
 
-    @JsonProperty("pairs")
+
     public List<FKPair> pairs_ = new ArrayList<>();
 
     public SelectBox(String pairs){
@@ -23,11 +22,13 @@ public class SelectBox extends ComboAdapter {
        }
     }
 
+    @JsonProperty("pairs")
     @Override
     public List<FKPair> getPairs() {
         return getPairs_();
     }
 
+    @JsonIgnore
     public List<FKPair> getPairs_() {
         return pairs_;
     }

@@ -79,6 +79,7 @@ public class Country extends MapCountry implements SuRecord {
             f = new SuField();
             f.setDataName("currency");
             f.setDefaultValue("");
+            f.setMaskRegex(SuField.MaskRegex.CURRENCY.getValue());
             f.setMaxLength(8);
             f.setTitle("Para Birimi");
             _fields.add(f);
@@ -128,6 +129,7 @@ public class Country extends MapCountry implements SuRecord {
             f.setDataName("createdAt");
             f.setDefaultValue(new Date());
             f.setFieldType(SuField.FieldType.DATE);
+            f.setDisplayType(SuField.DisplayType.HIDDEN);
             f.setTitle("Oluşturulma Tarihi");
             _fields.add(f);
 
@@ -135,13 +137,14 @@ public class Country extends MapCountry implements SuRecord {
             f.setDataName("updatedAt");
             f.setDefaultValue(new Date());
             f.setFieldType(SuField.FieldType.DATE);
+            f.setDisplayType(SuField.DisplayType.HIDDEN);
             f.setTitle("Değiştirilme Tarihi");
             _fields.add(f);
 
             f = new SuField();
             f.setDataName("visible");
             f.setDefaultValue(true);
-            f.setDisplayType(SuField.DisplayType.CHECKBOX);
+            f.setDisplayType(SuField.DisplayType.HIDDEN);
             f.setTitle("Silinme Durumu");
             _fields.add(f);
 
@@ -156,12 +159,14 @@ public class Country extends MapCountry implements SuRecord {
             f = new SuField();
             f.setDataName("createdBy");
             f.setDefaultValue(0L);
+            f.setDisplayType(SuField.DisplayType.HIDDEN);
             f.setTitle("Oluşturan");
             _fields.add(f);
 
             f = new SuField();
             f.setDataName("updatedBy");
             f.setDefaultValue(0L);
+            f.setDisplayType(SuField.DisplayType.HIDDEN);
             f.setTitle("Düzenleyen");
             _fields.add(f);
 
